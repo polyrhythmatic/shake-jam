@@ -43,6 +43,7 @@ var tambourine = new Tone.Sampler({
 var activeInst = 'shaker';
 
 $("input[name=instrument]:radio").change(function(data) {
+    tambourine.triggerAttack(0,0,0);
     activeInst = data.target.id;
     $("#content").html("<img src='./images/" + activeInst + ".svg' class='contentsvgs'>");
     if (activeInst === 'sampler' && recorderEnabled == false) {
