@@ -42,42 +42,14 @@ var tambourine = new Tone.Sampler({
 
 var activeInst = 'shaker';
 
-nx.onload = function() {
-    shakerButton.on('*', function(e) {
-        if (e.value) {
-            activeInst = 'shakers';
-        }
-        shaker.triggerAttack("cabasa", 0, 0);
-    });
-
-    cowbellButton.on('*', function(e) {
-        if (e.value) {
-            activeInst = 'cowbell';
-        }
-        shaker.triggerAttack("cabasa", 0, 0);
-    });
-
-    catButton.on('*', function(e) {
-        if (e.value) {
-            activeInst = 'cat';
-        }
-        shaker.triggerAttack("cabasa", 0, 0);
-    });
-
-    tambourineButton.on('*', function(e) {
-        if (e.value) {
-            activeInst = 'tambourine';
-        }
-        shaker.triggerAttack("cabasa", 0, 0);
-    });
-
-    guitarButton.on('*', function(e) {
-        if (e.value) {
-            activeInst = 'guitar';
-        }
-        shaker.triggerAttack("cabasa", 0, 1);
-    });
-}
+$("input[name=instrument]:radio").change(function(data) {
+    activeInst = data.target.id;
+    $("#content").html("<img src='./images/" + activeInst + ".svg' class='contentsvgs'>");
+    if (activeInst === 'sampler' && recorderEnabled == false) {
+        mic.start();
+        recorderEnabled = true;
+    }
+});
 
 window.addEventListener('devicemotion', deviceMotionHandler);
 
@@ -95,9 +67,6 @@ function deviceMotionHandler(event) {
     var diff = Math.abs(x);
     //if (Math.abs(x) > threshold) {
     switch (activeInst) {
-        case 'bongos':
-            playBongo(diff);
-            break;
         case 'guitar':
             playGuitar(diff);
             break;
@@ -112,18 +81,6 @@ function deviceMotionHandler(event) {
             break;
         case 'tambourine':
             playTambourine(diff);
-            break;
-        case 'toms':
-            playSynthTom(diff);
-            break;
-        case 'rhodes':
-            playRhodes(diff);
-            break;
-        case 'piano':
-            playPiano(diff);
-            break;
-        case 'sampler':
-            playSampler(diff);
             break;
     }
     // }
