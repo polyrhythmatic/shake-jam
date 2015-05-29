@@ -1,19 +1,19 @@
 var express = require('express');
 var app = express();
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.listen(process.env.PORT || 80, function() {});
 
-app.get('/', function(req, res) {
-    var ua = req.header('user-agent');
-    // Check the user-agent string to identyfy the device. 
-    if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
-        res.render(__dirname + 'error.html');
-    } else {
-        res.render(__dirname + 'index.html');
-    }
-});
+// app.get('/', function(req, res) {
+//     var ua = req.header('user-agent');
+//     // Check the user-agent string to identyfy the device. 
+//     if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile|ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/i.test(ua)) {
+//         res.render(__dirname + 'error.html');
+//     } else {
+//         res.render(__dirname + 'index.html');
+//     }
+// });
 
 // function isCallerMobile(req) {
 //   var ua = req.headers['user-agent'].toLowerCase(),
