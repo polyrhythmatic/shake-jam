@@ -43,7 +43,7 @@ var tambourine = new Tone.Sampler({
 var activeInst = 'shaker';
 
 $("input[name=instrument]:radio").change(function(data) {
-    tambourine.triggerAttack();
+    tambourine.triggerAttack("finger");
     activeInst = data.target.id;
 });
 
