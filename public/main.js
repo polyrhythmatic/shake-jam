@@ -43,13 +43,8 @@ var tambourine = new Tone.Sampler({
 var activeInst = 'shaker';
 
 $("input[name=instrument]:radio").change(function(data) {
-    tambourine.triggerAttack(0,0,0);
+    tambourine.triggerAttack();
     activeInst = data.target.id;
-    $("#content").html("<img src='./images/" + activeInst + ".svg' class='contentsvgs'>");
-    if (activeInst === 'sampler' && recorderEnabled == false) {
-        mic.start();
-        recorderEnabled = true;
-    }
 });
 
 window.addEventListener('devicemotion', deviceMotionHandler);
