@@ -43,7 +43,7 @@ var tambourine = new Tone.Sampler({
 var activeInst = 'shaker';
 
 $("input[name=instrument]:radio").change(function(data) {
-    tambourine.triggerAttack("finger",0,0);
+    tambourine.triggerAttack("finger", 0, 0);
     activeInst = data.target.id;
 });
 
@@ -58,7 +58,7 @@ function deviceMotionHandler(event) {
     var changeTest = changeDirection(x);
 
     //console.log(changeTest + " and time " + (Date.now() - lastTime));
-    console.log(x + " and time " + (Date.now() - lastTime));
+    //console.log(x + " and time " + (Date.now() - lastTime));
     //playShaker(x);
     var diff = Math.abs(x);
     //if (Math.abs(x) > threshold) {
@@ -95,30 +95,30 @@ playShaker = function(diff) {
     if (Math.abs(diff) > threshold && Date.now() - lastMove > 150) {
         var vel = map(Math.abs(diff), 10, 100, 0, 1);
         //console.log("velocity = " + vel + " and diff = " + diff);
-        if (diff > 0) {
-            shaker.triggerRelease("cabasa");
-            shaker.pitch = 0;
-            shaker.triggerAttack("cabasa", 0, vel);
-        };
-        if (diff < 0) {
-            shaker.triggerRelease("cabasa");
-            shaker.pitch = -4;
-            shaker.triggerAttack("cabasa", 0, vel);
-        };
-        // switch (mousePos) {
-        //     case 'ul':
-        //         shaker.triggerAttack("cabasa", 0, 1);
-        //         break;
-        //     case 'ur':
-        //         shaker.triggerAttack("caxixi", 0, 1);
-        //         break;
-        //     case 'll':
-        //         shaker.triggerAttack("maracas", 0, 1);
-        //         break;
-        //     case 'lr':
-        //         shaker.triggerAttack("shaker", 0, 1);
-        //         break;
-        // }
+        // if (diff > 0) {
+        //     shaker.triggerRelease("cabasa");
+        //     shaker.pitch = 0;
+        //     shaker.triggerAttack("cabasa", 0, vel);
+        // };
+        // if (diff < 0) {
+        //     shaker.triggerRelease("cabasa");
+        //     shaker.pitch = -4;
+        //     shaker.triggerAttack("cabasa", 0, vel);
+        // };
+        switch (mousePos) {
+            case 'ul':
+                shaker.triggerAttack("cabasa", 0, 1);
+                break;
+            case 'ur':
+                shaker.triggerAttack("caxixi", 0, 1);
+                break;
+            case 'll':
+                shaker.triggerAttack("maracas", 0, 1);
+                break;
+            case 'lr':
+                shaker.triggerAttack("shaker", 0, 1);
+                break;
+        }
 
         lastMove = Date.now();
     }
@@ -166,21 +166,7 @@ playTambourine = function(diff) {
 
 playCowbell = function(diff) {
     if (diff > threshold && Date.now() - lastMove > 150) {
-        switch (mousePos) {
-            case 'ul':
-                cowbell.triggerAttack("hi", 0, 1);
-                break;
-            case 'ur':
-                cowbell.triggerAttack("med-hi", 0, 1);
-                break;
-            case 'll':
-                cowbell.triggerAttack("med", 0, 1);
-                break;
-            case 'lr':
-                cowbell.triggerAttack("low", 0, 1);
-                break;
-        }
-
+            cowbell.triggerAttack("low", 0, 1);
         lastMove = Date.now();
     }
     lastVal = diff;
