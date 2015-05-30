@@ -43,7 +43,7 @@ var tambourine = new Tone.Sampler({
 var activeInst = 'shaker';
 
 $("input[name=instrument]:radio").change(function(data) {
-    tambourine.triggerAttack("finger", 0, 0);
+    tambourine.triggerAttack("roll", 0, 0);
     activeInst = data.target.id;
 });
 
@@ -53,9 +53,9 @@ var lastTime = Date.now();
 
 function deviceMotionHandler(event) {
     var x = event.acceleration.x;
-    var y = event.acceleration.y;
-    var z = event.acceleration.z;
-    var changeTest = changeDirection(x);
+    //var y = event.acceleration.y;
+    //var z = event.acceleration.z;
+    //var changeTest = changeDirection(x);
 
     //console.log(changeTest + " and time " + (Date.now() - lastTime));
     //console.log(x + " and time " + (Date.now() - lastTime));
@@ -87,8 +87,6 @@ function deviceMotionHandler(event) {
 var threshold = 20;
 
 var lastMove = Date.now();
-
-var mousePos = 'ul';
 
 
 playShaker = function(diff) {
