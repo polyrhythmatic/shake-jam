@@ -105,20 +105,7 @@ playShaker = function(diff) {
         //     shaker.pitch = -4;
         //     shaker.triggerAttack("cabasa", 0, vel);
         // };
-        switch (mousePos) {
-            case 'ul':
-                shaker.triggerAttack("cabasa", 0, 1);
-                break;
-            case 'ur':
-                shaker.triggerAttack("caxixi", 0, 1);
-                break;
-            case 'll':
-                shaker.triggerAttack("maracas", 0, 1);
-                break;
-            case 'lr':
-                shaker.triggerAttack("shaker", 0, 1);
-                break;
-        }
+        shaker.triggerAttack("cabasa", 0, 1);
 
         lastMove = Date.now();
     }
@@ -144,20 +131,8 @@ var triggerSpace = 150;
 
 playTambourine = function(diff) {
     if (diff > threshold && Date.now() - lastMove > triggerSpace) {
-        switch (mousePos) {
-            case 'ul':
-                tambourine.triggerAttack("finger", 0, 1);
-                break;
-            case 'ur':
-                tambourine.triggerAttack("roll", 0, 1);
-                break;
-            case 'll':
-                tambourine.triggerAttack("shake", 0, 1);
-                break;
-            case 'lr':
-                tambourine.triggerAttack("slap", 0, 1);
-                break;
-        }
+        
+        tambourine.triggerAttack("roll", 0, 1);
 
         lastMove = Date.now();
     }
@@ -166,7 +141,7 @@ playTambourine = function(diff) {
 
 playCowbell = function(diff) {
     if (diff > threshold && Date.now() - lastMove > 150) {
-            cowbell.triggerAttack("low", 0, 1);
+        cowbell.triggerAttack("low", 0, 1);
         lastMove = Date.now();
     }
     lastVal = diff;
